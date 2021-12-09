@@ -13,28 +13,28 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', function () {
-  // if (checkLen()) {
-  //   var upper = checkParams('Upper case');
-  //   params.push(upper);
-  //   var lower = checkParams('Lower case');
-  //   params.push(lower);
-  //   var num = checkParams('Numeric value');
-  //   params.push(num);
-  //   var symb = checkParams('Symbol');
-  //   params.push(symb);
-  //   if (!upper && !lower && !num && !symb) {
-  //     window.alert('You need to select at least 1');
-  //     return;
-  //   } else {
-  //     generatePassword();
-  //   }
-  // } else {
-  //   return;
-  // }
-  generatePassword(15);
+  if (checkLen(len) > 8) {
+    var upper = checkParams('Upper case');
+    params.push(upper);
+    var lower = checkParams('Lower case');
+    params.push(lower);
+    var num = checkParams('Numeric value');
+    params.push(num);
+    var symb = checkParams('Symbol');
+    params.push(symb);
+    if (!upper && !lower && !num && !symb) {
+      window.alert('You need to select at least 1');
+      return;
+    } else {
+      generatePassword();
+    }
+  } else {
+    return;
+  }
+  generatePassword();
 });
 
-function checkLen() {
+function checkLen(len) {
   // New variable to keep track of password lenght
   var len = window.prompt('Password length 8-128:');
   // Conditional check to see if lenght is valid
@@ -42,7 +42,7 @@ function checkLen() {
     window.alert('You need to provide a value greater than 8.');
     return false;
   }
-  return true;
+  return len;
 }
 
 function checkParams(param) {
@@ -89,28 +89,33 @@ function generatePassword(len, params) {
     var tmp = Math.floor(Math.random() * alpha.length);
     pass += alpha[tmp];
   }
-  password += pass.slice(0, len / 4);
+  password += pass.slice(0, Math.ceil(len / 4));
 
   pass = '';
   for (var i = 0; i < alpha.length; i++) {
     var tmp = Math.floor(Math.random() * alpha.length);
     pass += alpha[tmp].toUpperCase();
   }
-  password += pass.slice(0, len / 4);
+  password += pass.slice(0, Math.ceil(len / 4));
 
   pass = '';
   for (var i = 0; i < numbers.length; i++) {
     var tmp = Math.floor(Math.random() * numbers.length);
     pass += numbers[tmp];
   }
-  password += pass.slice(0, len / 4);
+  password += pass.slice(0, Math.ceil(len / 4));
 
   pass = '';
   for (var i = 0; i < symbols.length; i++) {
     var tmp = Math.floor(Math.random() * symbols.length);
     pass += symbols[tmp];
   }
-  password += pass.slice(0, len / 4);
+  password += pass.slice(0, Math.ceil(len / 4));
 
-  console.log(password);
+  if (password.length > len) {
+    var diff = password.length - len;
+    password = password.slice(diff);
+  }
+
+  console.log(password, password.length);
 }
