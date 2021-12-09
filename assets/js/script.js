@@ -1,11 +1,11 @@
 // Assignment Code
 var generateBtn = document.querySelector('#generate');
-
+var len = 0;
 var params = [];
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword(len);
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
@@ -13,7 +13,9 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', function () {
-  if (checkLen(len) > 8) {
+  len = checkLen();
+
+  if (len > 8) {
     var upper = checkParams('Upper case');
     params.push(upper);
     var lower = checkParams('Lower case');
@@ -26,15 +28,15 @@ generateBtn.addEventListener('click', function () {
       window.alert('You need to select at least 1');
       return;
     } else {
-      generatePassword();
+      generatePassword(len);
     }
   } else {
     return;
   }
-  generatePassword();
+  writePassword(len);
 });
 
-function checkLen(len) {
+function checkLen() {
   // New variable to keep track of password lenght
   var len = window.prompt('Password length 8-128:');
   // Conditional check to see if lenght is valid
@@ -116,6 +118,5 @@ function generatePassword(len, params) {
     var diff = password.length - len;
     password = password.slice(diff);
   }
-
-  console.log(password, password.length);
+  return password;
 }
