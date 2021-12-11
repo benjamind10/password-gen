@@ -2,6 +2,7 @@
 var len = 0;
 var params = [];
 var pass = '';
+var finalKey = [];
 
 // Object that holds the kes
 var keys = {
@@ -61,6 +62,7 @@ generateBtn.addEventListener('click', function () {
   }
 });
 
+// Function that generates the password
 function generatePassword(len, key) {
   console.log(len, key);
   while (len > pass.length) {
@@ -87,70 +89,14 @@ function getKeys(params) {
       return keys.symbol[Math.floor(Math.random() * keys.symbol.length)];
     },
   ];
+  // Resets final keys if app ran again
+  finalKey = [];
 
-  // Checks to validate each parameter and select the ones that are true
-  if (params[0] && params[1] && params[2] && params[3]) {
-    getKey = getKey;
-  } else if (params[1] && params[2] && params[3]) {
-    var getKey = [
-      function lowerCase() {
-        return keys.lowerCase[
-          Math.floor(Math.random() * keys.lowerCase.length)
-        ];
-      },
-      function number() {
-        return keys.number[Math.floor(Math.random() * keys.number.length)];
-      },
-      function symbol() {
-        return keys.symbol[Math.floor(Math.random() * keys.symbol.length)];
-      },
-    ];
-  } else if (params[0] && params[2] && params[3]) {
-    var getKey = [
-      function upperCase() {
-        return keys.upperCase[
-          Math.floor(Math.random() * keys.upperCase.length)
-        ];
-      },
-      function number() {
-        return keys.number[Math.floor(Math.random() * keys.number.length)];
-      },
-      function symbol() {
-        return keys.symbol[Math.floor(Math.random() * keys.symbol.length)];
-      },
-    ];
-  } else if (params[0] && params[1] && params[3]) {
-    var getKey = [
-      function upperCase() {
-        return keys.upperCase[
-          Math.floor(Math.random() * keys.upperCase.length)
-        ];
-      },
-      function lowerCase() {
-        return keys.lowerCase[
-          Math.floor(Math.random() * keys.lowerCase.length)
-        ];
-      },
-      function symbol() {
-        return keys.symbol[Math.floor(Math.random() * keys.symbol.length)];
-      },
-    ];
-  } else {
-    var getKey = [
-      function upperCase() {
-        return keys.upperCase[
-          Math.floor(Math.random() * keys.upperCase.length)
-        ];
-      },
-      function lowerCase() {
-        return keys.lowerCase[
-          Math.floor(Math.random() * keys.lowerCase.length)
-        ];
-      },
-      function number() {
-        return keys.number[Math.floor(Math.random() * keys.number.length)];
-      },
-    ];
+  // Loops the params array and selects the corresponding functions
+  for (var i = 0; i < params.length; i++) {
+    if (params[i]) {
+      finalKey.push(getKey[i]);
+    }
   }
-  return getKey;
+  return finalKey;
 }
