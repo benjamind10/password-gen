@@ -1,7 +1,7 @@
 // Universal Variables
 var len = 0;
 var params = [];
-var pass = '';
+var tmp = '';
 var finalKey = [];
 
 // Object that holds the kes
@@ -21,8 +21,9 @@ function writePassword() {
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
+
   // Resets values for new check;
-  pass = '';
+  tmp = '';
   params = [];
   len = 0;
 }
@@ -46,10 +47,13 @@ generateBtn.addEventListener('click', function () {
     // Checks the parameters
     var upperCase = window.confirm('Include upper case?');
     params.push(upperCase);
+
     var lowerCase = window.confirm('Include lower case?');
     params.push(lowerCase);
+
     var numbers = window.confirm('Include numbers?');
     params.push(numbers);
+
     var symbols = window.confirm('Include symbols?');
     params.push(symbols);
   }
@@ -58,23 +62,25 @@ generateBtn.addEventListener('click', function () {
     window.alert('You need to select at least one');
     return;
   } else {
+    // If all conditionals pass it wirtes pw to screen
     writePassword();
   }
 });
 
 // Function that generates the password
 function generatePassword(len, key) {
-  console.log(len, key);
-  while (len > pass.length) {
+  // Loops while the tmp pw is less than the length povided
+  while (len > tmp.length) {
+    // Picks a random function from the key array
     var addKey = key[Math.floor(Math.random() * key.length)];
-    pass += addKey();
+    tmp += addKey();
   }
-  return pass;
+  return tmp;
 }
 
 // Function to select which keys to use
 function getKeys(params) {
-  // Full Array with all parameters enabled
+  // Array with all the functions to randomize characters
   var getKey = [
     function upperCase() {
       return keys.upperCase[Math.floor(Math.random() * keys.upperCase.length)];
@@ -89,6 +95,7 @@ function getKeys(params) {
       return keys.symbol[Math.floor(Math.random() * keys.symbol.length)];
     },
   ];
+
   // Resets final keys if app ran again
   finalKey = [];
 
