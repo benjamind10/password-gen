@@ -1,38 +1,12 @@
 // Universal Variables
 var len = 0;
 var params = [];
-var alpha = [
-  'a',
-  'b',
-  'c',
-  'd',
-  'e',
-  'f',
-  'g',
-  'h',
-  'i',
-  'j',
-  'k',
-  'l',
-  'm',
-  'n',
-  'o',
-  'p',
-  'q',
-  'r',
-  's',
-  't',
-  'u',
-  'v',
-  'w',
-  'x',
-  'y',
-  'z',
-];
-var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-var symbols = ['!', '@', '#', '$', '%', '^', '&', '*', '_', '-', '+', '='];
-var pass = '';
-var password = '';
+var keys = {
+  upperCase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  lowerCase: 'abcdefghijklmnopqrstuvwxyz',
+  number: '0123456789',
+  symbol: '!@#$%^&*()_+~\\`|}{[]:;?><,./-=',
+};
 
 // Assignment Code
 var generateBtn = document.querySelector('#generate');
@@ -47,55 +21,113 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', function () {
-  len = checkLen();
-
-  if (len > 8) {
-    var upper = checkParams('Upper');
-    params.push(upper);
-    var lower = checkParams('Lower');
-    params.push(lower);
-    var lower = checkParams('Numbers');
-    params.push(lower);
-    var lower = checkParams('Symbols');
-    params.push(lower);
-
-    if (!upper && !lower && !num && !symb) {
-      window.alert('You need to select at least 1');
-      return;
-    } else {
-      //   generatePassword(len);
-    }
-  } else {
+  params = [];
+  len = parseInt(
+    window.prompt('Enter password length between 8 and 128 chars.')
+  );
+  if (!len) {
+    window.alert('This needs to be a number.');
+  } else if (len < 8 || len > 128) {
+    len = window.alert('You need to provide a value between 8 and 128.');
     return;
+  } else {
+    var upperCase = window.confirm('Include upper case?');
+    params.push(upperCase);
+    var lowerCase = window.confirm('Include lower case?');
+    params.push(lowerCase);
+    var numbers = window.confirm('Include numbers?');
+    params.push(numbers);
+    var symbols = window.confirm('Include symbols?');
+    params.push(symbols);
+  }
+  if (!upperCase && !lowerCase && !numbers && !symbols) {
+    window.alert('You need to select at least one');
+    return;
+  } else {
+    console.log('Success');
   }
 });
 
-function generatePassword() {
-  return 'test';
-}
+function generatePassword(len, key) {}
 
-// Check params fn`
-function checkParams(param) {
-  // Variable to check the current parameter
-  if (param === 'Upper' || param === 'Lower') {
-    var checked = window.confirm('Select OK to include ' + param + ' case');
+function getKes(params) {
+  var getKey = [
+    function upperCase() {
+      return keys.upperCase[Math.floor(Math.random() * keys.upperCase.length)];
+    },
+    function lowerCase() {
+      return keys.lowerCase[Math.floor(Math.random() * keys.lowerCase.length)];
+    },
+    function number() {
+      return keys.number[Math.floor(Math.random() * keys.number.length)];
+    },
+    function symbol() {
+      return keys.symbol[Math.floor(Math.random() * keys.symbol.length)];
+    },
+  ];
+
+  if (params[0] && params[1] && params[2] && params[3]) {
+    getKey = getKey;
+  } else if (params[1] && params[2] && params[3]) {
+    var getKey = [
+      function lowerCase() {
+        return keys.lowerCase[
+          Math.floor(Math.random() * keys.lowerCase.length)
+        ];
+      },
+      function number() {
+        return keys.number[Math.floor(Math.random() * keys.number.length)];
+      },
+      function symbol() {
+        return keys.symbol[Math.floor(Math.random() * keys.symbol.length)];
+      },
+    ];
+  } else if (params[0] && params[2] && params[3]) {
+    var getKey = [
+      function upperCase() {
+        return keys.upperCase[
+          Math.floor(Math.random() * keys.upperCase.length)
+        ];
+      },
+      function number() {
+        return keys.number[Math.floor(Math.random() * keys.number.length)];
+      },
+      function symbol() {
+        return keys.symbol[Math.floor(Math.random() * keys.symbol.length)];
+      },
+    ];
+  } else if (params[0] && params[1] && params[3]) {
+    var getKey = [
+      function upperCase() {
+        return keys.upperCase[
+          Math.floor(Math.random() * keys.upperCase.length)
+        ];
+      },
+      function lowerCase() {
+        return keys.lowerCase[
+          Math.floor(Math.random() * keys.lowerCase.length)
+        ];
+      },
+      function symbol() {
+        return keys.symbol[Math.floor(Math.random() * keys.symbol.length)];
+      },
+    ];
   } else {
-    var checked = window.confirm('Select OK to include ' + param);
+    var getKey = [
+      function upperCase() {
+        return keys.upperCase[
+          Math.floor(Math.random() * keys.upperCase.length)
+        ];
+      },
+      function lowerCase() {
+        return keys.lowerCase[
+          Math.floor(Math.random() * keys.lowerCase.length)
+        ];
+      },
+      function number() {
+        return keys.number[Math.floor(Math.random() * keys.number.length)];
+      },
+    ];
   }
-  if (checked) {
-    return param;
-  }
-  return false;
-}
-
-// Check length fn
-function checkLen() {
-  // New variable to keep track of password lenght
-  var len = window.prompt('Password length 8-128:');
-  // Conditional check to see if lenght is valid
-  if (len < 8) {
-    window.alert('You need to provide a value greater than 8.');
-    return false;
-  }
-  return len;
+  return getKey;
 }
