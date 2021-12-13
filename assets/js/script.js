@@ -58,7 +58,8 @@ generateBtn.addEventListener('click', function () {
   var symbols = document.getElementById('symbols').checked;
 
   if (upperCase + lowerCase + numbers + symbols === 0) {
-    alert('Please select at least one');
+    var passwordText = document.querySelector('#password');
+    passwordText.value = 'You need to select at least one.';
     return;
   }
   params.push(upperCase);
