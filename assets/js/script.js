@@ -104,9 +104,7 @@ function getKeys(params) {
 
   // Loops the params array and selects the corresponding functions
   for (var i = 0; i < params.length; i++) {
-    if (params[i]) {
-      finalKey.push(getKey[i]);
-    }
+    if (params[i]) finalKey.push(getKey[i]);
   }
   return finalKey;
 }
