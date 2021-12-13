@@ -18,6 +18,52 @@
       <div class="card-header">
         <h2>Generate a Password</h2>
       </div>
+      <div class="slidecontainer">
+        <h4>Password Length</h4>
+        <input type="range" min="8" max="128" value="50" class="slider" id="myRange">
+        <p id="slider-length">Length: </p>
+      </div>
+
+      <div class="toggle">
+        <div class="upper">
+          <p>Upper Case</p>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="toggle">
+          <div class="lower">
+            <p>Lower Case</p>
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="toggle">
+          <div class="numbers">
+            <p>Numbers Case</p>
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="toggle">
+          <div class="symbols">
+            <p>Symbols Case</p>
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
       <div class="card-body">
         <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
       </div>
