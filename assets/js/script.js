@@ -1,5 +1,5 @@
 // Universal Variables
-var len = 0;
+var len = 50;
 var params = [];
 var tmp = '';
 var finalKey = [];
@@ -44,21 +44,27 @@ function writePassword() {
   // Resets values for new check;
   tmp = '';
   params = [];
-  len = 0;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', function () {
   // Resets parameters if no selection was made
   params = [];
-  upperCase = params.push(upperCase);
-  params.push(lowerCase);
-  params.push(numbers);
-  params.push(symbols);
+
+  // Params Section
+  var upperCase = document.getElementById('upper').checked;
+  var lowerCase = document.getElementById('lower').checked;
+  var numbers = document.getElementById('numbers').checked;
+  var symbols = document.getElementById('symbols').checked;
+
   if (upperCase + lowerCase + numbers + symbols === 0) {
     alert('Please select at least one');
     return;
   }
+  params.push(upperCase);
+  params.push(lowerCase);
+  params.push(numbers);
+  params.push(symbols);
 
   writePassword();
 });
