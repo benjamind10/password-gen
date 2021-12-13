@@ -142,12 +142,24 @@ button[disabled] {
   justify-content: space-around;
 }
 
+.params::after {
+  content: ' ';
+  display: block;
+  width: 100%;
+  background: #e7e9eb;
+  height: 2px;
+}
+
+.toggle p {
+  text-align: center;
+}
+
 .switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
-  margin-left: 1em;
+  margin: 0 1em;
 }
 
 .switch input {
@@ -178,10 +190,6 @@ button[disabled] {
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-}
-
-.upper input {
-  margin: 0 auto;
 }
 
 input:checked + .slider {

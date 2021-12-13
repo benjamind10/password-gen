@@ -4,18 +4,24 @@ var params = [];
 var tmp = '';
 var finalKey = [];
 
-// Query selectors
+// Slider Section
 var slider = document.getElementById('myRange');
 var output = document.getElementById('slider-length');
 
 // Controls slider behavior
-var length = 0;
-output.innerHTML = 'Length: ' + slider.value; // Display the default slider value
+// Display the default slider value
+output.innerHTML = 'Length: ' + slider.value;
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function () {
   output.innerHTML = 'Length: ' + this.value;
-  length = parseInt(this.value);
+  len = parseInt(this.value);
 };
+
+// Params Section
+var upperCase = document.getElementById('upper').checked;
+var lowerCase = document.getElementById('lower').checked;
+var numbers = document.getElementById('numbers').checked;
+var symbols = document.getElementById('symbols').checked;
 
 // Object that holds the kes
 var keys = {
@@ -45,37 +51,16 @@ function writePassword() {
 generateBtn.addEventListener('click', function () {
   // Resets parameters if no selection was made
   params = [];
-  // Asks useer for lenght of password
-  len = parseInt(prompt('Enter password length between 8 and 128 chars.'));
-  // Conditional checks for appropiate format.
-  if (!len) {
-    alert('This needs to be a number.');
+  upperCase = params.push(upperCase);
+  params.push(lowerCase);
+  params.push(numbers);
+  params.push(symbols);
+  if (upperCase + lowerCase + numbers + symbols === 0) {
+    alert('Please select at least one');
     return;
-  } else if (len < 8 || len > 128) {
-    len = alert('You need to provide a value between 8 and 128.');
-    return;
-  } else {
-    // Checks the parameters
-    var upperCase = window.confirm('Include upper case?');
-    params.push(upperCase);
-
-    var lowerCase = window.confirm('Include lower case?');
-    params.push(lowerCase);
-
-    var numbers = window.confirm('Include numbers?');
-    params.push(numbers);
-
-    var symbols = window.confirm('Include symbols?');
-    params.push(symbols);
   }
-  // Conditional to check if at least 1 parameter was selected.
-  if (!upperCase && !lowerCase && !numbers && !symbols) {
-    alert('You need to select at least one');
-    return;
-  } else {
-    // If all conditionals pass it wirtes pw to screen
-    writePassword();
-  }
+
+  writePassword();
 });
 
 // Function that generates the password

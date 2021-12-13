@@ -24,46 +24,49 @@
         <p id="slider-length">Length: </p>
       </div>
 
-      <div class="toggle">
-        <div class="upper">
-          <p>Upper Case</p>
-          <label class="switch">
-            <input type="checkbox" checked>
-            <span class="slider round"></span>
-          </label>
-        </div>
-
+      <div class="params">
         <div class="toggle">
-          <div class="lower">
-            <p>Lower Case</p>
+          <div class="upper">
+            <p>Upper Case</p>
             <label class="switch">
-              <input type="checkbox" checked>
+              <input type="checkbox" id="upper" checked>
               <span class="slider round"></span>
             </label>
           </div>
-        </div>
 
-        <div class="toggle">
-          <div class="numbers">
-            <p>Numbers Case</p>
-            <label class="switch">
-              <input type="checkbox" checked>
-              <span class="slider round"></span>
-            </label>
+          <div class="toggle">
+            <div class="lower">
+              <p>Lower Case</p>
+              <label class="switch">
+                <input type="checkbox" id="lower" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="toggle">
+            <div class="numbers">
+              <p>Numbers</p>
+              <label class="switch">
+                <input type="checkbox" id="numbers" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="toggle">
+            <div class="symbols">
+              <p>Symbols</p>
+              <label class="switch">
+                <input type="checkbox" id="symbols" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
           </div>
         </div>
-
-        <div class="toggle">
-          <div class="symbols">
-            <p>Symbols Case</p>
-            <label class="switch">
-              <input type="checkbox" checked>
-              <span class="slider round"></span>
-            </label>
-          </div>
-        </div>
+        <br>
       </div>
-
+      <br>
       <div class="card-body">
         <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
       </div>
