@@ -1,3 +1,25 @@
+# About The Project:
+
+This challenge we had to make a password generator that allows different set of parameters to be chosen and displays a random password.
+
+# Built With:
+
+- HTML
+- CSS
+- JavaScript
+
+# Getting Started
+
+In order to run this project you need to click on this link: https://benjamind10.github.io/password-gen/
+
+# Demo
+
+## ![Demo](./assets/images/demo.png)
+
+# How To Use App:
+
+## ![Instructions](./assets/images/instructions.png)
+
 # 03 JavaScript: Password Generator
 
 Create an application that generates a random password based on user-selected criteria. The app runs in the browser and features dynamically updated HTML and CSS powered by your JavaScript code. It has a clean and polished user interface and is responsive, which ensures that it adapts to multiple screen sizes.
@@ -40,9 +62,10 @@ The following image demonstrates the application functionality:
 
 You are required to submit the following for review:
 
-* The URL of the deployed application.
+- The URL of the deployed application.
 
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
+- The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
 
-- - -
+---
+
 © 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
